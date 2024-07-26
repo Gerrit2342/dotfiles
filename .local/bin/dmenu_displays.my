@@ -1,0 +1,31 @@
+#! /bin/sh
+# This script configures an attached external monitor/projector
+# todo selecting resolution
+# option to turn off display
+
+mode=$(echo -e 'Erweitern\nSpiegeln\n' | dmenu -p "Externes Display...")
+side=$(echo -e 'Rechts\nLinks\n' | dmenu -p "Auf welcher Seite?")
+
+text="HELLO"
+
+if [ $mode = "Erweitern" ]
+then
+	case $side in
+		Rechts) $(xrandr --output DP-3 --right-of eDP-1)
+		;;
+		Links) $(xrandr --output DP-3 --left-of eDP-1)
+		;;
+	*) echo 'Default'
+		;;
+	esac
+elif [ $mode = "Spiegeln" ]
+then
+	case $side in
+		Rechts) $(xrandr --output DP-3 --right-of eDP-1 --same-as eDP-1)
+		;;
+		Links) $(xrandr --output DP-3 --left-of eDP-1 --same-as eDP-1) 
+		;;
+	*) echo 'Default'
+		;;
+	esac
+fi

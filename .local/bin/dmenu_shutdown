@@ -1,0 +1,12 @@
+#! /bin/bash
+
+data=$(echo -e "Shutdown\nReboot\nSleep" | dmenu)
+
+if [ $data = "Shutdown" ] 
+then
+	$(doas /usr/bin/poweroff)
+elif [ $data = "Reboot" ] 
+then
+	$(doas /usr/bin/reboot)
+fi
+#Default case bei esc verwerten 

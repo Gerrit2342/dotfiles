@@ -1,0 +1,15 @@
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
+	. "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
+else
+	. "$HOME/.xprofile"
+fi
+
+exec lxpolkit &
+exec picom &
+exec slstatus &
+exec owncloud &
+exec xwallpaper --stretch /home/gerrit/pictures/wallpaper/a1.jpg &
+/home/gerrit/.local/bin/keyspeed
+exec unclutter -idle 3 &
+xrdb ~/.Xresources
+exec dwm 
