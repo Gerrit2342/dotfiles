@@ -1,5 +1,7 @@
 -- My init.lua
-require ("zz") -- will find and execute plugins.lua file
+--
+-- Load lazy.nvim plugin manager
+require("lz")
 
 -- Zeige Zeilennummern
 vim.opt.number = true
