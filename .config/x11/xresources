@@ -1,4 +1,7 @@
 dwm.gappx: 15
-dwm.color8: #DB1818
+
+! Border around active window
+dwm.color8: #ff0000
+
 st.foreground: #F8F8F2
 st.background: #282A36
