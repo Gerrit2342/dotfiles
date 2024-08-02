@@ -29,44 +29,7 @@ require("lazy").setup({
 	}
 
 })
--- Setup lazy.nvim
---require("lazy").setup({
---  spec = {
---    -- add your plugins here
---    -- Rosepine colorscheme
---	{ "rose-pine/neovim", name = "rose-pine", lazy = false },
---
---    -- Tokyonight colorscheme
---	{
---	"folke/tokyonight.nvim",
---  	lazy = false,
---  	priority = 1000,
---  	opts = {},
---  	config = function()
---      	-- load the colorscheme here
---      	end,
---	},
---
---	-- Vimtex for LaTeX
---	{
---  	"lervag/vimtex",
---  	lazy = false,     -- we don't want to lazy load VimTeX
---  	init = function()
---    	-- VimTeX configuration goes here, e.g.
---    	vim.g.vimtex_view_method = "zathura"
---	vim.g.maplocalleader = ","
---  	end
---	}
---
---  },
 
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
---  install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
- -- checker = { enabled = true, notify = false },
---})
--- Standardfarbschema setzen
 vim.cmd([[colorscheme rose-pine]])
 
 -- Transparenter Hintergrund
@@ -75,3 +38,63 @@ function transp ()
 end
 
 transp()
+
+-- Setup cmp completion
+local cmp = require 'cmp'
+
+   cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+         require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
+
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+
+    mapping = cmp.mapping.preset.insert({
+      ['<C-j>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-k>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' }, -- For luasnip users.
+    }, 
+    {
+      { name = 'buffer', option = { keyword_pattern = [[\k\+]]} },
+    })
+  })
+
+  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    }),
+    matching = { disallow_symbol_nonprefix_matching = false }
+  })
+
+  -- Set up lspconfig.
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require('lspconfig')['texlab'].setup {
+    capabilities = capabilities}
+ 
