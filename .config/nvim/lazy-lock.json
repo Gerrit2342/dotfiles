@@ -9,5 +9,7 @@
   "nvim-cmp": { "branch": "main", "commit": "d818fd0624205b34e14888358037fb6f5dc51234" },
   "nvim-lspconfig": { "branch": "master", "commit": "fdc44768a09a65140aa00c92872a5381ad486485" },
   "rose-pine": { "branch": "main", "commit": "e4b08d74b7272cb21e4e9c71b8b9e0830fd722fe" },
-  "tokyonight.nvim": { "branch": "main", "commit": "b0e7c7382a7e8f6456f2a95655983993ffda745e" }
+  "texlab": { "branch": "master", "commit": "3266a4d84565816ae82cd36c7a3069cb57534923" },
+  "tokyonight.nvim": { "branch": "main", "commit": "b0e7c7382a7e8f6456f2a95655983993ffda745e" },
+  "vimtex": { "branch": "master", "commit": "5ac62e0315c6f54f53a7d6da7c485cf8e9cf7240" }
 }
