@@ -8,3 +8,4 @@ fi
 
 exec slstatus &
 exec dwm 
+#exec gnome-session
