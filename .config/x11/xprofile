@@ -9,7 +9,7 @@ xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment t
 xwallpaper --maximize /home/gerrit/pictures/wallpaper/assumption2.jpg &
 /home/gerrit/.local/bin/keyspeed
 
-autostart="mpd unclutter lxpolkit picom owncloud "
+autostart="mpd unclutter lxpolkit picom dunst owncloud "
 
 for program in $autostart; do
 	pidof -sx "$program" || "$program" &
