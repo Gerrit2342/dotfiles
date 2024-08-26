@@ -1,8 +1,6 @@
 -- My init.lua
 --
 -- Load lazy.nvim plugin manager
-require("lz")
-
 -- Zeige Zeilennummern
 vim.opt.number = true
 -- Zeilennummern relativ zum Cursor
@@ -15,4 +13,7 @@ vim.cmd("filetype on")
 vim.keymap.set("i", "<C-c>", "<Esc>") 
 vim.keymap.set("i", "jj", "<Esc>") 
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+require("lz")
 

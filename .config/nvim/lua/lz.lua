@@ -18,8 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
 
@@ -95,6 +93,6 @@ local cmp = require 'cmp'
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['texlab'].setup {}
+  -- require('lspconfig')['texlab'].setup {}
 
  require'colorizer'.setup()
