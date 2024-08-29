@@ -37,6 +37,7 @@ end
 
 transp()
 
+
 -- Setup cmp completion
 local cmp = require 'cmp'
 
@@ -58,7 +59,7 @@ local cmp = require 'cmp'
       ['<C-j>'] = cmp.mapping.scroll_docs(-4),
       ['<C-k>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
+      ['<C-x>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
 
@@ -96,3 +97,16 @@ local cmp = require 'cmp'
   -- require('lspconfig')['texlab'].setup {}
 
  require'colorizer'.setup()
+
+ -- Somewhere in your Neovim startup, e.g. init.lua
+require("luasnip").config.set_config({ -- Setting LuaSnip config
+
+  -- Enable autotriggered snippets
+  enable_autosnippets = true,
+
+  -- Use Tab (or some other key if you prefer) to trigger visual selection
+  store_selection_keys = "<Tab>",
+})
+-- Lazy-load snippets, i.e. only load when required, e.g. for a given filetype
+require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/lua/LuaSnip/"})
+
