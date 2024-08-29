@@ -2,4 +2,4 @@
 
 path="/home/gerrit/Sciebo/Dissertation/LaTeX/"
 
-echo -e "$(date) \n$(wc $path/*.tex)" >> $path/wordcount
+echo -e "$(date +%x) \n$(wc $path/*.tex)" >> $path/wordcount
