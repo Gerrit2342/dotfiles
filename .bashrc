@@ -25,3 +25,4 @@ alias p='zathura'
 
 #PS1='\u@\h[\[\e[38;5;196;1m\]\w\[\e[0m\]]\\$ '
 PS1='\u@\[\e[2m\]\h\[\e[0m\][\[\e[97;1m\]\w\[\e[0m\]]\\$ '
+source ~/.local/share/blesh/ble.sh
