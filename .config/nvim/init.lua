@@ -3,6 +3,8 @@
 -- Load lazy.nvim plugin manager
 -- Zeige Zeilennummern
 vim.opt.number = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 -- Zeilennummern relativ zum Cursor
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
