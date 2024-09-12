@@ -1,0 +1,2 @@
+# No special characters
+-o $HOME/Music/%(title)s.%(ext)s" --restrict-filenames
