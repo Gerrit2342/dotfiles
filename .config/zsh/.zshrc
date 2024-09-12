@@ -27,7 +27,7 @@ alias pS='pacman -S'
 
 # git
 alias gs='git status'
-alias ga='git add -A'
+alias ga='git add -f'
 alias gc='git commit'
 alias gp='git push'
 alias cc='sudo make install clean'
@@ -67,6 +67,11 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 bindkey '^R' history-incremental-search-backward
+
+# Redo las command as root
+previousdoas () { doas $(fc -ln -1); zle redisplay }
+zle -N previousdoas
+bindkey '^[s' previousdoas  
 
 # vi mode
 bindkey -v
