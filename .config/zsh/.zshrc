@@ -3,7 +3,7 @@ export MANPAGER="nvim +Man!"
 
 autoload -U colors && colors	# Load colors
 
-LS_COLORS="di=1;35:ln=31"
+LS_COLORS="di=1;35:*m4a=0;31"
 export LS_COLORS
 
 # History in cache directory:
@@ -12,11 +12,15 @@ SAVEHIST=10000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 setopt inc_append_history
 
+
+setopt auto_cd
+# Extended globbin (matching)
+setopt extended_glob
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+# Some aliases
 alias nv='nvim'
 alias ps='pacman -Ss'
 alias pS='pacman -S'
@@ -28,6 +32,7 @@ alias gc='git commit'
 alias gp='git push'
 alias cc='sudo make install clean'
 
+# Options for system commands
 alias ls="ls -hN --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
@@ -38,9 +43,12 @@ alias rm="rm -vI"
 alias bc="bc -ql" 
 alias rsync="rsync -vrPlu" 
 alias mkd="mkdir -pv" 
+
+# Some other aliases
 alias yt="yt-dlp --embed-metadata -i"
-alias yta="yt -x -f bestaudio/best"
+alias yta="yt -x -f m4a"
 alias ytt="yt --skip-download --write-thumbnail"
+
 alias ffmpeg="ffmpeg -hide_banner"
 # Open PDF reader
 alias p='zathura'
@@ -59,3 +67,22 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 bindkey '^R' history-incremental-search-backward
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select () {
+    case $KEYMAP in
+        vicmd) echo -ne '\e[1 q';;      # block
+        viins|main) echo -ne '\e[5 q';; # beam
+    esac
+}
