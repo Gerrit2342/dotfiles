@@ -3,12 +3,16 @@
 -- Load lazy.nvim plugin manager
 -- Zeige Zeilennummern
 vim.opt.number = true
+-- Smart Search ignoriert Kapitalisierung, außer das Wort wird explizit groß geschrieben
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 -- Zeilennummern relativ zum Cursor
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
 vim.opt.autochdir = true
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+
 vim.cmd("syntax on")
 vim.cmd("filetype on")
 
