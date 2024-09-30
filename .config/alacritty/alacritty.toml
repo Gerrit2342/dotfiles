@@ -1,0 +1,8 @@
+[font]
+size = 10
+normal.family = "JetBrains Mono"
+bold.family = "JetBrains Mono"
+italic.family = "JetBrains Mono"
+bold_italic.family = "JetBrains Mono"
+[window]
+opacity = 0.8
